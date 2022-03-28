@@ -5,6 +5,7 @@ import com.example.mongodb.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/employee")
@@ -55,5 +56,21 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         String message = "Employee with id %s deleted successfully";
         return String.format(message, id);
+    }
+
+    /**
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param sortBy
+     * @return list of employees with the pagination and sorting filters
+     */
+    @GetMapping("/page")
+    public Map<String, Object> getAllEmployeeInPage(
+            @RequestParam(value = "page_no", defaultValue = "0") int pageNo,      //Since page number convention starts with 0
+            @RequestParam(value = "page_size", defaultValue = "2") int pageSize,
+            @RequestParam(value = "sort_by", defaultValue = "id") String sortBy
+    ) {
+        return employeeService.getAllEmployeeInPage(pageNo, pageSize, sortBy);
     }
 }
