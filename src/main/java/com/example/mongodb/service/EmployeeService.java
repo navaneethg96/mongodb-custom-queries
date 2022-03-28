@@ -2,6 +2,8 @@ package com.example.mongodb.service;
 
 import com.example.mongodb.model.Employee;
 import com.example.mongodb.repository.EmployeeRepository;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -48,5 +50,16 @@ public class EmployeeService {
         response.put("Per Page", page.getNumberOfElements());
         response.put("Total Pages", page.getTotalPages());
         return response;
+    }
+
+    public List<Employee> getAllEmployeeByExample(Employee employee) {
+        ExampleMatcher exampleMatcher = ExampleMatcher.matching().withIgnoreCase()
+                .withMatcher("firstName", ExampleMatcher.GenericPropertyMatcher.of(ExampleMatcher.StringMatcher.EXACT));
+        /*
+        ExampleMatcher is a custom matcher and is optional and can be excluded while passing to the parameter of Example.of()
+        We can pass any of the field/fields as an example and can fetch the matching employee object(s) based on request body
+         */
+        Example<Employee> example = Example.of(employee, exampleMatcher);
+        return employeeRepository.findAll(example);
     }
 }

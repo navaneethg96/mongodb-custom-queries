@@ -73,4 +73,14 @@ public class EmployeeController {
     ) {
         return employeeService.getAllEmployeeInPage(pageNo, pageSize, sortBy);
     }
+
+    /**
+     *
+     * @param employee
+     * @return employee list matching with the ExampleMatcher
+     */
+    @GetMapping("/example")
+    public List<Employee> getAllEmployeeByExample(@RequestBody Employee employee) {
+        return employeeService.getAllEmployeeByExample(employee);
+    }
 }
