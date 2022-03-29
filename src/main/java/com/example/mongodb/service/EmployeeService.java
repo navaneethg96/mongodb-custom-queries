@@ -74,4 +74,8 @@ public class EmployeeService {
     public List<Employee> getByZipCode(int zipCode) {
         return employeeRepository.findByAddressZipCode(zipCode);
     }
+
+    public List<Employee> getAllBySalary(float salary) {
+        return employeeRepository.findBySalary(salary);
+    }
 }

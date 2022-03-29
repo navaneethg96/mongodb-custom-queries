@@ -104,8 +104,23 @@ public class EmployeeController {
         return employeeService.getAllNamesStartWith(firstName);
     }
 
+    /**
+     *
+     * @param zipCode
+     * @return list of employees based on zipcode present in a different Entity class
+     */
     @GetMapping("/zipcode")
     public List<Employee> getByZipCode(@RequestParam(name = "zipcode") int zipCode) {
         return employeeService.getByZipCode(zipCode);
+    }
+
+    /**
+     *
+     * @param salary
+     * @return list of specific employee fields based on salary filter(GT,GTE,LT,LTE,etc...) using @Query() annotation
+     */
+    @GetMapping("/salary")
+    public List<Employee> getAllBySalary(@RequestParam(name = "salary") float salary) {
+        return employeeService.getAllBySalary(salary);
     }
 }
