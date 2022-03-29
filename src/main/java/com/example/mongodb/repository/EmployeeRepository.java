@@ -12,4 +12,6 @@ public interface EmployeeRepository extends MongoRepository<Employee, String> {
     List<Employee> findByFirstName(String firstName);
 
     List<Employee> findByFirstNameStartingWith(String firstName);
+
+    List<Employee> findByAddressZipCode(int zipCode);
 }

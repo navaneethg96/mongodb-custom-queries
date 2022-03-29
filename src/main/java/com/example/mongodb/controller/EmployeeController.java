@@ -103,4 +103,9 @@ public class EmployeeController {
     public List<Employee> getAllNamesStartWith(@RequestParam(name = "start_with") String firstName) {
         return employeeService.getAllNamesStartWith(firstName);
     }
+
+    @GetMapping("/zipcode")
+    public List<Employee> getByZipCode(@RequestParam(name = "zipcode") int zipCode) {
+        return employeeService.getByZipCode(zipCode);
+    }
 }

@@ -70,4 +70,8 @@ public class EmployeeService {
     public List<Employee> getAllNamesStartWith(String firstName) {
         return employeeRepository.findByFirstNameStartingWith(firstName);
     }
+
+    public List<Employee> getByZipCode(int zipCode) {
+        return employeeRepository.findByAddressZipCode(zipCode);
+    }
 }
