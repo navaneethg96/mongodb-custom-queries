@@ -62,4 +62,12 @@ public class EmployeeService {
         Example<Employee> example = Example.of(employee, exampleMatcher);
         return employeeRepository.findAll(example);
     }
+
+    public List<Employee> getAllByFirstName(String firstName) {
+        return employeeRepository.findByFirstName(firstName);
+    }
+
+    public List<Employee> getAllNamesStartWith(String firstName) {
+        return employeeRepository.findByFirstNameStartingWith(firstName);
+    }
 }

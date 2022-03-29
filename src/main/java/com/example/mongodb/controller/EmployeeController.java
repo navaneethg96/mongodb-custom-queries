@@ -67,9 +67,9 @@ public class EmployeeController {
      */
     @GetMapping("/page")
     public Map<String, Object> getAllEmployeeInPage(
-            @RequestParam(value = "page_no", defaultValue = "0") int pageNo,      //Since page number convention starts with 0
-            @RequestParam(value = "page_size", defaultValue = "2") int pageSize,
-            @RequestParam(value = "sort_by", defaultValue = "id") String sortBy
+            @RequestParam(name = "page_no", defaultValue = "0") int pageNo,      //Since page number convention starts with 0
+            @RequestParam(name = "page_size", defaultValue = "2") int pageSize,
+            @RequestParam(name = "sort_by", defaultValue = "id") String sortBy
     ) {
         return employeeService.getAllEmployeeInPage(pageNo, pageSize, sortBy);
     }
@@ -82,5 +82,25 @@ public class EmployeeController {
     @GetMapping("/example")
     public List<Employee> getAllEmployeeByExample(@RequestBody Employee employee) {
         return employeeService.getAllEmployeeByExample(employee);
+    }
+
+    /**
+     *
+     * @param firstName
+     * @return employee list based on firstName
+     */
+    @GetMapping("/firstname")
+    public List<Employee> getAllByFirstName(@RequestParam(name = "first_name") String firstName) {
+        return employeeService.getAllByFirstName(firstName);
+    }
+
+    /**
+     *
+     * @param firstName
+     * @return employee list based on firstName starting with the input parameter
+     */
+    @GetMapping("/start")
+    public List<Employee> getAllNamesStartWith(@RequestParam(name = "start_with") String firstName) {
+        return employeeService.getAllNamesStartWith(firstName);
     }
 }
